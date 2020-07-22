@@ -14,6 +14,9 @@ class CalendarTile extends StatelessWidget {
   final TextStyle dateStyles;
   final Widget child;
   final Color selectedColor;
+  final Color selectedTextColor;
+  final Color unselectedTextColor;
+  final Color unselectedTextAnotherMonthColor;
   final Color todayColor;
   final Color eventColor;
   final Color eventDoneColor;
@@ -30,6 +33,9 @@ class CalendarTile extends StatelessWidget {
     this.inMonth: true,
     this.events,
     this.selectedColor,
+    this.selectedTextColor = Colors.white,
+    this.unselectedTextColor = Colors.black,
+    this.unselectedTextAnotherMonthColor = Colors.grey,
     this.todayColor,
     this.eventColor,
     this.eventDoneColor,
@@ -73,10 +79,12 @@ class CalendarTile extends StatelessWidget {
                       fontSize: 14.0,
                       fontWeight: FontWeight.w400,
                       color: isSelected
-                          ? Colors.white
+                          ? this.selectedTextColor
                           : Utils.isSameDay(this.date, DateTime.now())
                               ? todayColor
-                              : inMonth ? Colors.black : Colors.grey),
+                              : inMonth
+                                  ? unselectedTextColor
+                                  : unselectedTextAnotherMonthColor),
                 ),
                 events != null && events.length > 0
                     ? Row(

@@ -28,6 +28,9 @@ class Calendar extends StatefulWidget {
   final Color todayColor;
   final Color eventColor;
   final Color eventDoneColor;
+  final Color selectedTextColor;
+  final Color unselectedTextColor;
+  final Color unselectedTextAnotherMonthColor;
   final DateTime initialDate;
   final bool isExpanded;
   final List<String> weekDays;
@@ -53,6 +56,9 @@ class Calendar extends StatefulWidget {
     this.todayColor,
     this.eventColor,
     this.eventDoneColor,
+    this.selectedTextColor,
+    this.unselectedTextColor,
+    this.unselectedTextAnotherMonthColor,
     this.initialDate,
     this.isExpanded = false,
     this.weekDays = const ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
@@ -177,6 +183,10 @@ class _CalendarState extends State<Calendar> {
         dayWidgets.add(
           CalendarTile(
             selectedColor: widget.selectedColor,
+            selectedTextColor: widget.selectedTextColor,
+            unselectedTextColor: widget.unselectedTextColor,
+            unselectedTextAnotherMonthColor:
+                widget.unselectedTextAnotherMonthColor,
             todayColor: widget.todayColor,
             eventColor: widget.eventColor,
             eventDoneColor: widget.eventDoneColor,
