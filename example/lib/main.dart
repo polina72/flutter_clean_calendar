@@ -86,6 +86,8 @@ class _CalendarScreenState extends State<CalendarScreen> {
                 selectedColor: Colors.pink,
                 todayColor: Colors.yellow,
                 eventColor: Colors.grey,
+                selectedTextColor: Colors.white,
+                unselectedTextColor: Colors.red,
                 dayOfWeekStyle: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w800,

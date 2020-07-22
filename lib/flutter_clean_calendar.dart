@@ -56,9 +56,9 @@ class Calendar extends StatefulWidget {
     this.todayColor,
     this.eventColor,
     this.eventDoneColor,
-    this.selectedTextColor,
-    this.unselectedTextColor,
-    this.unselectedTextAnotherMonthColor,
+    this.selectedTextColor = Colors.white,
+    this.unselectedTextColor = Colors.black,
+    this.unselectedTextAnotherMonthColor = Colors.grey,
     this.initialDate,
     this.isExpanded = false,
     this.weekDays = const ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
@@ -226,6 +226,10 @@ class _CalendarState extends State<Calendar> {
           dayWidgets.add(
             CalendarTile(
               selectedColor: widget.selectedColor,
+              selectedTextColor: widget.selectedTextColor,
+              unselectedTextColor: widget.unselectedTextColor,
+              unselectedTextAnotherMonthColor:
+                  widget.unselectedTextAnotherMonthColor,
               todayColor: widget.todayColor,
               eventColor: widget.eventColor,
               eventDoneColor: widget.eventDoneColor,
@@ -239,6 +243,10 @@ class _CalendarState extends State<Calendar> {
           dayWidgets.add(
             CalendarTile(
                 selectedColor: widget.selectedColor,
+                selectedTextColor: widget.selectedTextColor,
+                unselectedTextColor: widget.unselectedTextColor,
+                unselectedTextAnotherMonthColor:
+                    widget.unselectedTextAnotherMonthColor,
                 todayColor: widget.todayColor,
                 eventColor: widget.eventColor,
                 eventDoneColor: widget.eventDoneColor,
