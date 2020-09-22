@@ -18,6 +18,7 @@ class Range {
 class Calendar extends StatefulWidget {
   final ValueChanged<DateTime> onDateSelected;
   final ValueChanged<DateTime> onMonthChanged;
+  final ValueChanged<bool> onExpandStateChanged;
   final ValueChanged onRangeSelected;
   final bool isExpandable;
   final DayBuilder dayBuilder;
@@ -47,6 +48,7 @@ class Calendar extends StatefulWidget {
     this.onMonthChanged,
     this.onDateSelected,
     this.onRangeSelected,
+    this.onExpandStateChanged,
     this.hideBottomBar: false,
     this.isExpandable: false,
     this.events,
@@ -462,7 +464,10 @@ class _CalendarState extends State<Calendar> {
 
   void toggleExpanded() {
     if (widget.isExpandable) {
-      setState(() => isExpanded = !isExpanded);
+      final newState = !isExpanded;
+      setState(() => isExpanded = newState);
+      if (widget.onExpandStateChanged != null)
+        widget.onExpandStateChanged(newState);
     }
   }
 
