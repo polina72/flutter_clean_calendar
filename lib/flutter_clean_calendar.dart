@@ -69,7 +69,7 @@ class Calendar extends StatefulWidget {
     this.bottomBarTextStyle,
     this.bottomBarArrowColor,
     this.bottomBarColor,
-    this.expandableDateFormat = "EEEE MMMM dd, yyyy",    
+    this.expandableDateFormat = "EEEE MMMM dd, yyyy",
   });
 
   @override
@@ -300,7 +300,8 @@ class _CalendarState extends State<Calendar> {
             children: <Widget>[
               SizedBox(width: 40.0),
               Text(
-                DateFormat(widget.expandableDateFormat, widget.locale).format(_selectedDate),
+                DateFormat(widget.expandableDateFormat, widget.locale)
+                    .format(_selectedDate),
                 style: widget.bottomBarTextStyle ?? TextStyle(fontSize: 13),
               ),
               IconButton(
@@ -494,8 +495,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   _firstDayOfWeek(DateTime date) {
-    var day = new DateTime.utc(
-        _selectedDate.year, _selectedDate.month, _selectedDate.day, 12);
+    var day = new DateTime.utc(date.year, date.month, date.day, 12);
     return day.subtract(
         new Duration(days: day.weekday - (widget.startOnMonday ? 1 : 0)));
   }
