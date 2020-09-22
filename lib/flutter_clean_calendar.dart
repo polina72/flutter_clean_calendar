@@ -41,6 +41,7 @@ class Calendar extends StatefulWidget {
   final TextStyle bottomBarTextStyle;
   final Color bottomBarArrowColor;
   final Color bottomBarColor;
+  final String expandableDateFormat;
 
   Calendar({
     this.onMonthChanged,
@@ -68,6 +69,7 @@ class Calendar extends StatefulWidget {
     this.bottomBarTextStyle,
     this.bottomBarArrowColor,
     this.bottomBarColor,
+    this.expandableDateFormat = "EEEE MMMM dd, yyyy",    
   });
 
   @override
@@ -298,7 +300,7 @@ class _CalendarState extends State<Calendar> {
             children: <Widget>[
               SizedBox(width: 40.0),
               Text(
-                Utils.fullDayFormat(selectedDate),
+                DateFormat(widget.expandableDateFormat, widget.locale).format(_selectedDate),
                 style: widget.bottomBarTextStyle ?? TextStyle(fontSize: 13),
               ),
               IconButton(
