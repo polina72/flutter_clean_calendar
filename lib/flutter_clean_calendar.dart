@@ -370,10 +370,8 @@ class _CalendarState extends State<Calendar> {
   void nextMonth() {
     setState(() {
       _selectedDate = Utils.nextMonth(_selectedDate);
-      var firstDateOfNewMonth = Utils.firstDayOfMonth(_selectedDate);
-      var lastDateOfNewMonth = Utils.lastDayOfMonth(_selectedDate);
-      updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
       selectedMonthsDays = _daysInMonth(_selectedDate);
+      updateSelectedRange(selectedMonthsDays.first, selectedMonthsDays.last);
       var monthFormat =
           DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
       displayMonth =
@@ -385,10 +383,8 @@ class _CalendarState extends State<Calendar> {
   void previousMonth() {
     setState(() {
       _selectedDate = Utils.previousMonth(_selectedDate);
-      var firstDateOfNewMonth = Utils.firstDayOfMonth(_selectedDate);
-      var lastDateOfNewMonth = Utils.lastDayOfMonth(_selectedDate);
-      updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
       selectedMonthsDays = _daysInMonth(_selectedDate);
+      updateSelectedRange(selectedMonthsDays.first, selectedMonthsDays.last);
       var monthFormat =
           DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
       displayMonth =
@@ -512,7 +508,8 @@ class _CalendarState extends State<Calendar> {
   List<DateTime> _daysInMonth(DateTime month) {
     var first = Utils.firstDayOfMonth(month);
     var daysBefore = first.weekday;
-    var firstToDisplay = first.subtract(new Duration(days: daysBefore - 1));
+    var firstToDisplay = first.subtract(
+        new Duration(days: daysBefore - 1 + (widget.startOnMonday ? 0 : 1)));
     var last = Utils.lastDayOfMonth(month);
 
     var daysAfter = 7 - last.weekday;
@@ -522,7 +519,11 @@ class _CalendarState extends State<Calendar> {
       daysAfter = 7;
     }
 
-    var lastToDisplay = last.add(new Duration(days: daysAfter));
+    var lastToDisplay = last.add(new Duration(
+        days: daysAfter +
+            (widget.startOnMonday
+                ? 1
+                : 0))); // + 1 to include the last day since comparison isBefore
     return Utils.daysInRange(firstToDisplay, lastToDisplay).toList();
   }
 }

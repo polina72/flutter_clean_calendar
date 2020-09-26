@@ -76,7 +76,15 @@ class _CalendarScreenState extends State<CalendarScreen> {
             Container(
               child: Calendar(
                 startOnMonday: true,
-                weekDays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+                weekDays: [
+                  "Mon",
+                  "Tue",
+                  "Wed",
+                  "Thu",
+                  "Fri",
+                  "Sat",
+                  "Sun",
+                ],
                 events: _events,
                 onRangeSelected: (range) =>
                     print("Range is ${range.from}, ${range.to}"),
