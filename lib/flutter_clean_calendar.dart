@@ -470,10 +470,21 @@ class _CalendarState extends State<Calendar> {
   void handleSelectedDateAndUserCallback(DateTime day) {
     var firstDayOfCurrentWeek = _firstDayOfWeek(day);
     var lastDayOfCurrentWeek = _lastDayOfWeek(day);
-    if (_selectedDate.month > day.month) {
+    if (_selectedDate.month > day.month && _selectedDate.year == day.year) {
+      // previous month within the same year
+      previousMonth();
+    } else if (_selectedDate.month < day.month &&
+        _selectedDate.year > day.year) {
+      // previous year
       previousMonth();
     }
-    if (_selectedDate.month < day.month) {
+
+    if (_selectedDate.month < day.month && _selectedDate.year < day.year) {
+      // next month within the same year
+      nextMonth();
+    } else if (_selectedDate.month > day.month &&
+        day.year > _selectedDate.year) {
+      // next year
       nextMonth();
     }
     setState(() {
